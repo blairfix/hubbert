@@ -37,8 +37,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // prod_curve
-std::map< std::string, std::list<double>> prod_curve(const arma::uvec& well_id, const arma::vec& prod_first_6, const arma::vec& prod_first_12, const arma::vec& prod_first_24, const arma::vec& prod_first_60, const arma::vec& prod_2nd_last_year, const arma::vec& prod_last_year, const arma::vec& prod_daily_last_year, const arma::vec& prod_cumulative, const arma::vec& prod_peak_daily, const arma::vec& date_start, const arma::vec& date_end, const arma::vec& peak_month, const arma::vec& decline_3, const arma::vec& decline_12, const arma::vec& decline_24, const arma::vec& decline_60, double step_threshold);
-RcppExport SEXP _hubbert_prod_curve(SEXP well_idSEXP, SEXP prod_first_6SEXP, SEXP prod_first_12SEXP, SEXP prod_first_24SEXP, SEXP prod_first_60SEXP, SEXP prod_2nd_last_yearSEXP, SEXP prod_last_yearSEXP, SEXP prod_daily_last_yearSEXP, SEXP prod_cumulativeSEXP, SEXP prod_peak_dailySEXP, SEXP date_startSEXP, SEXP date_endSEXP, SEXP peak_monthSEXP, SEXP decline_3SEXP, SEXP decline_12SEXP, SEXP decline_24SEXP, SEXP decline_60SEXP, SEXP step_thresholdSEXP) {
+arma::mat prod_curve(const arma::uvec& well_id, const arma::vec& prod_first_6, const arma::vec& prod_first_12, const arma::vec& prod_first_24, const arma::vec& prod_first_60, const arma::vec& prod_2nd_last_year, const arma::vec& prod_last_year, const arma::vec& prod_daily_last_year, const arma::vec& prod_cumulative, const arma::vec& prod_peak_daily, const arma::vec& date_start, const arma::vec& date_end, const arma::vec& peak_month, const arma::vec& decline_3, const arma::vec& decline_12, const arma::vec& decline_24, const arma::vec& decline_60, double time_step, double step_threshold);
+RcppExport SEXP _hubbert_prod_curve(SEXP well_idSEXP, SEXP prod_first_6SEXP, SEXP prod_first_12SEXP, SEXP prod_first_24SEXP, SEXP prod_first_60SEXP, SEXP prod_2nd_last_yearSEXP, SEXP prod_last_yearSEXP, SEXP prod_daily_last_yearSEXP, SEXP prod_cumulativeSEXP, SEXP prod_peak_dailySEXP, SEXP date_startSEXP, SEXP date_endSEXP, SEXP peak_monthSEXP, SEXP decline_3SEXP, SEXP decline_12SEXP, SEXP decline_24SEXP, SEXP decline_60SEXP, SEXP time_stepSEXP, SEXP step_thresholdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -59,8 +59,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::vec& >::type decline_12(decline_12SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type decline_24(decline_24SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type decline_60(decline_60SEXP);
+    Rcpp::traits::input_parameter< double >::type time_step(time_stepSEXP);
     Rcpp::traits::input_parameter< double >::type step_threshold(step_thresholdSEXP);
-    rcpp_result_gen = Rcpp::wrap(prod_curve(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, step_threshold));
+    rcpp_result_gen = Rcpp::wrap(prod_curve(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -68,7 +69,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_hubbert_cumsum_by_tag", (DL_FUNC) &_hubbert_cumsum_by_tag, 2},
     {"_hubbert_cumsum_by_date", (DL_FUNC) &_hubbert_cumsum_by_date, 3},
-    {"_hubbert_prod_curve", (DL_FUNC) &_hubbert_prod_curve, 18},
+    {"_hubbert_prod_curve", (DL_FUNC) &_hubbert_prod_curve, 19},
     {NULL, NULL, 0}
 };
 

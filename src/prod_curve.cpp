@@ -328,6 +328,7 @@ arma::mat prod_curve (
 
                     // decimal year of production rounded to month
                     double year = std::floor( 12 * date_start[i] ) / 12 +  dates_interpolate[t] / 12;
+                    year = std::round(year, 3)
 
                     output(id_out, 2) = year ;
 

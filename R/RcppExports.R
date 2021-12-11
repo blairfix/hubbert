@@ -9,7 +9,7 @@ cumsum_by_date <- function(x, year, steps_per_year) {
     .Call('_hubbert_cumsum_by_date', PACKAGE = 'hubbert', x, year, steps_per_year)
 }
 
-prod_curve <- function(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, step_threshold) {
-    .Call('_hubbert_prod_curve', PACKAGE = 'hubbert', well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, step_threshold)
+prod_curve <- function(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold) {
+    .Call('_hubbert_prod_curve', PACKAGE = 'hubbert', well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold)
 }
 
