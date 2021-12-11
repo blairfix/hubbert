@@ -11,7 +11,7 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
 
-std::map< std::string, std::list<double>> prod_curve (
+arma::mat prod_curve (
     const arma::uvec & well_id,
     const arma::vec & prod_first_6,
     const arma::vec & prod_first_12,
@@ -29,16 +29,26 @@ std::map< std::string, std::list<double>> prod_curve (
     const arma::vec & decline_12,
     const arma::vec & decline_24,
     const arma::vec & decline_60,
+    double time_step,
     double step_threshold
     )
 
 {
 
-    // final result map
-    std::map< std::string, std::list<double>> output;
 
     // number of wells
     int n_wells = prod_cumulative.size();
+
+    // estimate nrows of output
+    arma::vec n_active =   arma::ceil( date_end - date_start )*12 ;
+    n_active = n_active.elem( find_finite( n_active ) );
+    int nrows = arma::sum(n_active) ;
+    nrows = nrows * 1.2 ; // add padding
+
+    // output matrix (empty vals set to -999)
+    arma::mat output(nrows, 5, arma::fill::value(-999) );
+    int id_out = 0; // output index counter
+
 
     // loop over individual wells
     boost::progress_display show_progress(n_wells);
@@ -203,7 +213,7 @@ std::map< std::string, std::list<double>> prod_curve (
         if( dates_monthly_production.size() > 1 ){
 
             // interpolation dates
-            arma::vec dates_interpolate = arma::regspace(0, 0.1, months_active);
+            arma::vec dates_interpolate = arma::regspace(0, time_step, months_active);
 
             // interpolate with fast linear (assumes monotonic increasing x)
             arma::vec monthly_production_interpolate;
@@ -300,17 +310,45 @@ std::map< std::string, std::list<double>> prod_curve (
 
 
 
+
             // append well id, dates, and production estimate to output list
             // append if whole month only
+            int t_old = 0;
 
             for(int t = 0; t < dates_interpolate.size(); t++){
 
                 // if whole month, pushback to output
                 if( dates_interpolate[t] == round(dates_interpolate[t]) ){
 
-                    output["well_id"].push_back(well_id[i]);
-                    output["production_month"].push_back( dates_interpolate[t] );
-                    output["cumulative_production"].push_back( prod_cum_norm[t] );
+                    // well id
+                    output(id_out, 0) = well_id[i] ;
+
+                    // production month
+                    output(id_out, 1) = dates_interpolate[t] ;
+
+                    // decimal year of production rounded to month
+                    double year = std::floor( 12 * date_start[i] ) / 12 +  dates_interpolate[t] / 12;
+
+                    output(id_out, 2) = year ;
+
+                    // cumulative production
+                    output(id_out, 3) =  prod_cum_norm[t] ;
+
+
+                    // monthly production
+                    double month_prod;
+
+                    if( t == 0 ){
+                        month_prod = 0;
+                    } else{
+                        month_prod = prod_cum_norm[t] - prod_cum_norm[t_old];
+                    }
+
+                    output(id_out, 4) = month_prod;
+
+                    // update counters
+                    t_old = t;
+                    id_out++;
 
                 }
             }
@@ -322,6 +360,18 @@ std::map< std::string, std::list<double>> prod_curve (
         ++show_progress;
 
     }
+
+    // remove empty values from output matrix
+    arma::uvec id_keep = find(output.col(0) != -999 );
+    output = output.rows( id_keep ) ;
+
+    // output matrix contains following columns:
+    // 1. well id
+    // 2. production month number
+    // 3. year decimal of production
+    // 4. cumulative production of well
+    // 5. monthly production of well
+
 
     return output;
 
