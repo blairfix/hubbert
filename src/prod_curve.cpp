@@ -110,11 +110,19 @@ arma::mat prod_curve (
         dates_cumulative_production = dates_cumulative_production(id);
         cumulative_production = cumulative_production(id);
 
-        // remove descending production
+        // remove descending cumulative production
         arma::vec prod_diff = arma::diff(cumulative_production);
         id = arma::find( prod_diff < 0 ) + 1;
-        dates_cumulative_production.shed_rows(id);
-        cumulative_production.shed_rows(id);
+
+        while(id.size() > 0) {
+
+            dates_cumulative_production.shed_rows(id);
+            cumulative_production.shed_rows(id);
+
+            prod_diff = arma::diff(cumulative_production);
+            id = arma::find( prod_diff < 0 ) + 1;
+        }
+
 
 
         //----------------------------------------------------------------------------------------------
@@ -164,9 +172,14 @@ arma::mat prod_curve (
         dates_monthly_production = dates_monthly_production(id);
         monthly_production = monthly_production(id);
 
-
         // keep only dates less than or equal to months active
         id = arma::find( dates_monthly_production <= months_active );
+
+        dates_monthly_production = dates_monthly_production(id);
+        monthly_production = monthly_production(id);
+
+        // keep only dates with positive production
+        id = arma::find(  monthly_production >= 0 );
 
         dates_monthly_production = dates_monthly_production(id);
         monthly_production = monthly_production(id);
