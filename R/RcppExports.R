@@ -9,6 +9,18 @@ cumsum_by_date <- function(x, year, steps_per_year) {
     .Call('_hubbert_cumsum_by_date', PACKAGE = 'hubbert', x, year, steps_per_year)
 }
 
+depletion_stats <- function(depletion, well_id, month) {
+    .Call('_hubbert_depletion_stats', PACKAGE = 'hubbert', depletion, well_id, month)
+}
+
+lotka_volt <- function(r_0, c_0, k_1, k_2, k_3, time, step_size) {
+    .Call('_hubbert_lotka_volt', PACKAGE = 'hubbert', r_0, c_0, k_1, k_2, k_3, time, step_size)
+}
+
+lotka_volt_cumulative <- function(r_0, c_0, k_1, k_2, k_3_init, k_3_slope, time, step_size) {
+    .Call('_hubbert_lotka_volt_cumulative', PACKAGE = 'hubbert', r_0, c_0, k_1, k_2, k_3_init, k_3_slope, time, step_size)
+}
+
 prod_curve <- function(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold) {
     .Call('_hubbert_prod_curve', PACKAGE = 'hubbert', well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold)
 }

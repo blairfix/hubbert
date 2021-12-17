@@ -251,6 +251,7 @@ arma::mat prod_curve (
                 // check for cumulative production overshoot
                 if( cumulative_counter >= prod_cumulative[i] ){
                     prod_current = 0;
+                    cumulative_counter = prod_cumulative[i];
                 }
 
 
