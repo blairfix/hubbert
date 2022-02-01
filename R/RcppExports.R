@@ -29,3 +29,7 @@ prod_extrap <- function(well_id_vec, cum_prod_vec, date_start_vec, month_prod_ve
     .Call('_hubbert_prod_extrap', PACKAGE = 'hubbert', well_id_vec, cum_prod_vec, date_start_vec, month_prod_vec, year_last, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold)
 }
 
+prod_sim <- function(well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold) {
+    .Call('_hubbert_prod_sim', PACKAGE = 'hubbert', well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold)
+}
+

@@ -134,6 +134,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// prod_sim
+arma::mat prod_sim(arma::vec& well_id_vec, arma::vec& date_start_vec, double year_start, double reserve_rate, double reserve_intercept, double half_rate, double half_intercept, double n_year_extrap, double stop_threshold);
+RcppExport SEXP _hubbert_prod_sim(SEXP well_id_vecSEXP, SEXP date_start_vecSEXP, SEXP year_startSEXP, SEXP reserve_rateSEXP, SEXP reserve_interceptSEXP, SEXP half_rateSEXP, SEXP half_interceptSEXP, SEXP n_year_extrapSEXP, SEXP stop_thresholdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec& >::type well_id_vec(well_id_vecSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type date_start_vec(date_start_vecSEXP);
+    Rcpp::traits::input_parameter< double >::type year_start(year_startSEXP);
+    Rcpp::traits::input_parameter< double >::type reserve_rate(reserve_rateSEXP);
+    Rcpp::traits::input_parameter< double >::type reserve_intercept(reserve_interceptSEXP);
+    Rcpp::traits::input_parameter< double >::type half_rate(half_rateSEXP);
+    Rcpp::traits::input_parameter< double >::type half_intercept(half_interceptSEXP);
+    Rcpp::traits::input_parameter< double >::type n_year_extrap(n_year_extrapSEXP);
+    Rcpp::traits::input_parameter< double >::type stop_threshold(stop_thresholdSEXP);
+    rcpp_result_gen = Rcpp::wrap(prod_sim(well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_hubbert_cumsum_by_tag", (DL_FUNC) &_hubbert_cumsum_by_tag, 2},
@@ -143,6 +162,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_hubbert_lotka_volt_cumulative", (DL_FUNC) &_hubbert_lotka_volt_cumulative, 8},
     {"_hubbert_prod_curve", (DL_FUNC) &_hubbert_prod_curve, 19},
     {"_hubbert_prod_extrap", (DL_FUNC) &_hubbert_prod_extrap, 11},
+    {"_hubbert_prod_sim", (DL_FUNC) &_hubbert_prod_sim, 9},
     {NULL, NULL, 0}
 };
 
