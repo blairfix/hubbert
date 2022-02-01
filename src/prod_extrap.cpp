@@ -88,7 +88,8 @@ arma::mat prod_extrap  (
 		    // write to output containers
 		    output(id_out, 0) = well_id;
 		    output(id_out, 1) = t_vec[t] + year_last; 
-		    output(id_out, 2) = month_prod; output(id_out, 3) = date_start;
+		    output(id_out, 2) = month_prod; 
+		    output(id_out, 3) = date_start;
 		    
 		    // update output iterator
 		    id_out++;	
@@ -111,4 +112,5 @@ arma::mat prod_extrap  (
 
     return output;
 }
+
 
