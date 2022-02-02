@@ -12,7 +12,8 @@ arma::mat prod_sim (
 		     double half_rate,
 		     double half_intercept,
 		     double n_year_extrap,
-		     double stop_threshold
+		     double stop_threshold,
+		     double reserve_sd_log
 		    )
 
 {
@@ -54,6 +55,16 @@ arma::mat prod_sim (
 	// get reserve size from start date
 	double reserve = std::exp ( reserve_rate * date_start + reserve_intercept );
 
+	// add lognormal noise to reserve size
+	// lognormal distribution with mean = 0
+	double sigma = reserve_sd_log;
+	double mu = log(1) - 0.5 * pow( sigma, 2);
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::lognormal_distribution<> d(mu, sigma);
+
+	reserve = reserve *  d(gen);
 
 
 	// loop over t_vec

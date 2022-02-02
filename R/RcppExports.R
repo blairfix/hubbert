@@ -33,3 +33,7 @@ prod_sim <- function(well_id_vec, date_start_vec, year_start, reserve_rate, rese
     .Call('_hubbert_prod_sim', PACKAGE = 'hubbert', well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold)
 }
 
+prod_sim_rand <- function(well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold, reserve_sd_log) {
+    .Call('_hubbert_prod_sim_rand', PACKAGE = 'hubbert', well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold, reserve_sd_log)
+}
+
