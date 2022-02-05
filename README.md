@@ -4,7 +4,7 @@ This is an R package that contains tools I've developed for analyzing oil-and-ga
 
 ### Functions
 
-* `cumsum_year`: a function for stacking the production curves of individual wells.
+* `cumsum_year`: a function for stacking the production curves of individual wells. (The function `cumsum_by_tag` does the same thing, but is a bit slower.)
 
 * `depletion_stats`: a function for calculating the average depletion curve across all wells.
 
@@ -12,6 +12,6 @@ This is an R package that contains tools I've developed for analyzing oil-and-ga
 
 * `prod_curve`: a function for estimating production curves for individual wells. You can read more details [here](https://github.com/blairfix/prod_curve).
 
-* `prod_extrap`: a function for extrapolating the production curves of active wells into the future.
+* `prod_extrap`: a function for extrapolating the production curves of active wells into the future. (I have two different versions of this function that use slightly different methods.)
 
 * `prod_sim`: a function for simulating the production curves for future wells.
