@@ -25,15 +25,15 @@ prod_curve <- function(well_id, prod_first_6, prod_first_12, prod_first_24, prod
     .Call('_hubbert_prod_curve', PACKAGE = 'hubbert', well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold)
 }
 
-prod_extrap <- function(well_id_vec, cum_prod_vec, date_start_vec, month_prod_vec, year_last, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold) {
-    .Call('_hubbert_prod_extrap', PACKAGE = 'hubbert', well_id_vec, cum_prod_vec, date_start_vec, month_prod_vec, year_last, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold)
+prod_extrap_gr <- function(well_id_vec, date_start_vec, month_prod_vec, gr_vec, year_last, n_year_extrap, stop_threshold) {
+    .Call('_hubbert_prod_extrap_gr', PACKAGE = 'hubbert', well_id_vec, date_start_vec, month_prod_vec, gr_vec, year_last, n_year_extrap, stop_threshold)
 }
 
-prod_sim <- function(well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold) {
-    .Call('_hubbert_prod_sim', PACKAGE = 'hubbert', well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold)
+prod_extrap_reserve <- function(well_id_vec, cum_prod_vec, date_start_vec, month_prod_vec, year_last, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold) {
+    .Call('_hubbert_prod_extrap_reserve', PACKAGE = 'hubbert', well_id_vec, cum_prod_vec, date_start_vec, month_prod_vec, year_last, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold)
 }
 
-prod_sim_rand <- function(well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold, reserve_sd_log) {
-    .Call('_hubbert_prod_sim_rand', PACKAGE = 'hubbert', well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold, reserve_sd_log)
+prod_sim <- function(well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold, reserve_sd_log) {
+    .Call('_hubbert_prod_sim', PACKAGE = 'hubbert', well_id_vec, date_start_vec, year_start, reserve_rate, reserve_intercept, half_rate, half_intercept, n_year_extrap, stop_threshold, reserve_sd_log)
 }
 

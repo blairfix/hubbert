@@ -30,7 +30,7 @@ arma::vec cumsum_by_date (
     // make bin vector
     double year_span = y_max - y_min;
     int step = steps_per_year + 1;
-    int n_bins = (y_max - y_min) * step +1;
+    int n_bins = (y_max - y_min) * step + 1;
 
 
     arma::vec bin_vector(n_bins);
