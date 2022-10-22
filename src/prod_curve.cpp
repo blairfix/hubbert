@@ -1,5 +1,6 @@
 #include <RcppArmadillo.h>
-#include <boost/progress.hpp>
+
+#include <boost/timer/progress_display.hpp>
 #include <iostream>
 #include <list>
 #include <map>
@@ -51,7 +52,7 @@ arma::mat prod_curve (
 
 
     // loop over individual wells
-    boost::progress_display show_progress(n_wells);
+    boost::timer::progress_display show_progress(n_wells);
 
     for(int i = 0; i < n_wells; i++) {
 
