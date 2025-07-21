@@ -21,6 +21,10 @@ lotka_volt_cumulative <- function(r_0, c_0, k_1, k_2, k_3_init, k_3_slope, time,
     .Call('_hubbert_lotka_volt_cumulative', PACKAGE = 'hubbert', r_0, c_0, k_1, k_2, k_3_init, k_3_slope, time, step_size)
 }
 
+lv_orig <- function(prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size) {
+    .Call('_hubbert_lv_orig', PACKAGE = 'hubbert', prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size)
+}
+
 prod_curve <- function(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold) {
     .Call('_hubbert_prod_curve', PACKAGE = 'hubbert', well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold)
 }

@@ -84,6 +84,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// lv_orig
+Rcpp::DataFrame lv_orig(double prey_initial, double predator_initial, double prey_growth_rate, double predator_death_rate, double prey_effect_on_predator, double predator_effect_on_prey, double time, double step_size);
+RcppExport SEXP _hubbert_lv_orig(SEXP prey_initialSEXP, SEXP predator_initialSEXP, SEXP prey_growth_rateSEXP, SEXP predator_death_rateSEXP, SEXP prey_effect_on_predatorSEXP, SEXP predator_effect_on_preySEXP, SEXP timeSEXP, SEXP step_sizeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type prey_initial(prey_initialSEXP);
+    Rcpp::traits::input_parameter< double >::type predator_initial(predator_initialSEXP);
+    Rcpp::traits::input_parameter< double >::type prey_growth_rate(prey_growth_rateSEXP);
+    Rcpp::traits::input_parameter< double >::type predator_death_rate(predator_death_rateSEXP);
+    Rcpp::traits::input_parameter< double >::type prey_effect_on_predator(prey_effect_on_predatorSEXP);
+    Rcpp::traits::input_parameter< double >::type predator_effect_on_prey(predator_effect_on_preySEXP);
+    Rcpp::traits::input_parameter< double >::type time(timeSEXP);
+    Rcpp::traits::input_parameter< double >::type step_size(step_sizeSEXP);
+    rcpp_result_gen = Rcpp::wrap(lv_orig(prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size));
+    return rcpp_result_gen;
+END_RCPP
+}
 // prod_curve
 arma::mat prod_curve(const arma::uvec& well_id, const arma::vec& prod_first_6, const arma::vec& prod_first_12, const arma::vec& prod_first_24, const arma::vec& prod_first_60, const arma::vec& prod_2nd_last_year, const arma::vec& prod_last_year, const arma::vec& prod_daily_last_year, const arma::vec& prod_cumulative, const arma::vec& prod_peak_daily, const arma::vec& date_start, const arma::vec& date_end, const arma::vec& peak_month, const arma::vec& decline_3, const arma::vec& decline_12, const arma::vec& decline_24, const arma::vec& decline_60, double time_step, double step_threshold);
 RcppExport SEXP _hubbert_prod_curve(SEXP well_idSEXP, SEXP prod_first_6SEXP, SEXP prod_first_12SEXP, SEXP prod_first_24SEXP, SEXP prod_first_60SEXP, SEXP prod_2nd_last_yearSEXP, SEXP prod_last_yearSEXP, SEXP prod_daily_last_yearSEXP, SEXP prod_cumulativeSEXP, SEXP prod_peak_dailySEXP, SEXP date_startSEXP, SEXP date_endSEXP, SEXP peak_monthSEXP, SEXP decline_3SEXP, SEXP decline_12SEXP, SEXP decline_24SEXP, SEXP decline_60SEXP, SEXP time_stepSEXP, SEXP step_thresholdSEXP) {
@@ -178,6 +196,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_hubbert_depletion_stats", (DL_FUNC) &_hubbert_depletion_stats, 3},
     {"_hubbert_lotka_volt", (DL_FUNC) &_hubbert_lotka_volt, 7},
     {"_hubbert_lotka_volt_cumulative", (DL_FUNC) &_hubbert_lotka_volt_cumulative, 8},
+    {"_hubbert_lv_orig", (DL_FUNC) &_hubbert_lv_orig, 8},
     {"_hubbert_prod_curve", (DL_FUNC) &_hubbert_prod_curve, 19},
     {"_hubbert_prod_extrap_gr", (DL_FUNC) &_hubbert_prod_extrap_gr, 7},
     {"_hubbert_prod_extrap_reserve", (DL_FUNC) &_hubbert_prod_extrap_reserve, 11},
