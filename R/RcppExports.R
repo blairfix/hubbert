@@ -25,6 +25,14 @@ lv_orig <- function(prey_initial, predator_initial, prey_growth_rate, predator_d
     .Call('_hubbert_lv_orig', PACKAGE = 'hubbert', prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size)
 }
 
+lv_predator_shock <- function(prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size, time_shock, size_shock) {
+    .Call('_hubbert_lv_predator_shock', PACKAGE = 'hubbert', prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size, time_shock, size_shock)
+}
+
+lv_prey_shock <- function(prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size, time_shock, size_shock) {
+    .Call('_hubbert_lv_prey_shock', PACKAGE = 'hubbert', prey_initial, predator_initial, prey_growth_rate, predator_death_rate, prey_effect_on_predator, predator_effect_on_prey, time, step_size, time_shock, size_shock)
+}
+
 prod_curve <- function(well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold) {
     .Call('_hubbert_prod_curve', PACKAGE = 'hubbert', well_id, prod_first_6, prod_first_12, prod_first_24, prod_first_60, prod_2nd_last_year, prod_last_year, prod_daily_last_year, prod_cumulative, prod_peak_daily, date_start, date_end, peak_month, decline_3, decline_12, decline_24, decline_60, time_step, step_threshold)
 }
